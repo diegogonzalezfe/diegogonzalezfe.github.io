@@ -56,16 +56,19 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <p></p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
     <script>
-
         function introduceWordToStorage() {
             var word = document.getElementById("fword").value;
             
             if (word.length > 0) {
                 var words = sessionStorage.getItem("wordArray");
 
-                if (words.length > 0) {
+                if (words == null){
+                    words = word;
+                } else if(words.length > 2) {
                     words = words + "," + word;
                 } else {
                     words = word;
