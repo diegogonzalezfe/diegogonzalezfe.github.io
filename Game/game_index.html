@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<title>Among Wiki</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+    <div class="w3-content w3-margin-top" style="max-width:100%;">
+
+        <div class="w3-row-padding">
+
+            <div class="w3-center">
+
+                <div class="w3-container w3-card w3-white w3-margin-bottom">
+                    <h2 class="w3-text-black w3-padding-16"><i class="fa fa-gamepad fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Bienvenido a AmongWiki! <i class="fa fa-gamepad fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i></i></h2>
+                    <div class="w3-container">
+                        <h5><b>AmongWiki es un juego en desarrollo.</b></h5> 
+                        <p style="margin-left: 25%; margin-right: 25%;">Para empezar a jugar cada uno de los jugadores deberá introducir una palabra (pasa el dispositivo al primer jugador). <b>Cuidado!</b> el significado de la palabra solo lo deberá conocer el jugador que la este introduciendo, para ello recomendamos utilizar los títulos de artículos peculiares o random de Wikipedia. Para ello si no tienes idea de que palabra introducir haz click para leer un artículo aleatorio en el siguiente <a href="https://es.wikipedia.org/wiki/Especial:Aleatoria" target="_blank" rel="noopener noreferrer"> link.</a></p>
+                    </div>
+                    <div class="w3-container w3-padding-16">
+                        <p style="margin-left: 25%; margin-right: 25%;"> Cuando tengas algún artículo o palabra que te guste introducela en el siguiente cuadro de texto y pasa el dispositivo al siguiente jugador.</p>
+                    </div>
+                    <div class="w3-container w3-padding-16">
+                        <form>
+                            <input type="text" id="fword" value="" placeholder="Introduce tu palabra aquí" minlength="2" maxlength="30"> <button class="w3-button w3-teal" onclick="introduceWordToStorage()">Introducir palabra</button>
+                        </form>
+                    </div>
+                    <div class="w3-container w3-padding-16">
+                        <p style="margin-left: 25%; margin-right: 25%;">El ultimo jugador no deberá introducir ninguna palabra. Sencillamente deberá pulsa el boton de abajo y leer la palabra en alto.</p>
+                        <button class="w3-button w3-teal" onclick="showRandomWordFromStorage()" timeout="1000">Palabra random</button>
+                    </div>
+                    <div class="w3-container w3-padding-64">
+                        <h5 style="font-size: 4vw;" id="wordPresentation"></h5>
+                    </div>
+                    <div class="w3-container w3-padding-64"></div>
+                    <div class="w3-container w3-padding-32"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="w3-container w3-teal w3-center w3-margin-top">
+        <p>Mis perfiles.</p>
+        <a href="https://github.com/diegogonzalezfe"><i class="fa fa-github w3-hover-opacity"></i></a>
+        <a href="https://www.linkedin.com/in/diego-gonz%C3%A1lez-fern%C3%A1ndez-01b14320a/"><i class="fa fa-linkedin w3-hover-opacity" ></i></a>
+        <a href="../index.html"><i class="fa fa-home w3-hover-opacity"></i></a>
+        <p></p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+
+        function introduceWordToStorage() {
+            var word = document.getElementById("fword").value;
+            
+            if (word.length > 0) {
+                var words = sessionStorage.getItem("wordArray");
+
+                if (words.length > 0) {
+                    words = words + "," + word;
+                } else {
+                    words = word;
+                }
+                
+                sessionStorage.setItem("wordArray", words);
+                document.getElementById("wordPresentation").innerHTML = "Palabra introducida";
+                
+            } else {
+                alert("Introduce una palabra");
+            }
+        }
+
+        function showRandomWordFromStorage() {
+            var words = sessionStorage.getItem("wordArray");
+
+            if (words.length > 2) {
+                var wordArray = words.split(",");
+                var randomNumber = Math.floor(Math.random() * wordArray.length);
+                document.getElementById("wordPresentation").innerHTML = wordArray[randomNumber];
+                wordArray.pop(randomNumber);
+                sessionStorage.setItem("wordArray", wordArray.toString());
+            } else {
+                alert("No hay palabras introducidas");
+            }
+        }
+
+    </script>
+</body>
+</html>
