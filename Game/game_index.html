@@ -17,7 +17,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
             <div class="w3-center">
 
-                <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <div class="w3-container w3-card w3-white">
                     <h2 class="w3-text-black w3-padding-16"><i class="fa fa-gamepad fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Bienvenido a AmongWiki! <i class="fa fa-gamepad fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i></i></h2>
                     <div class="w3-container">
                         <h5><b>AmongWiki es un juego en desarrollo.</b></h5> 
@@ -36,10 +36,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                         <button class="w3-button w3-teal" onclick="showRandomWordFromStorage()" timeout="1000">Palabra random</button>
                     </div>
                     <div class="w3-container w3-padding-64">
-                        <h5 style="font-size: 4vw;" id="wordPresentation"></h5>
+                        <h1 id="wordPresentation"></h1>
                     </div>
-                    <div class="w3-container w3-padding-64"></div>
-                    <div class="w3-container w3-padding-32"></div>
                 </div>
 
             </div>
@@ -48,7 +46,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
     </div>
 
-    <footer class="w3-container w3-teal w3-center w3-margin-top">
+    <footer position:absolute; bottom:0; class="w3-container w3-teal w3-center w3-margin-top">
         <p>Mis perfiles.</p>
         <a href="https://github.com/diegogonzalezfe"><i class="fa fa-github w3-hover-opacity"></i></a>
         <a href="https://www.linkedin.com/in/diego-gonz%C3%A1lez-fern%C3%A1ndez-01b14320a/"><i class="fa fa-linkedin w3-hover-opacity" ></i></a>
@@ -75,7 +73,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                 }
                 
                 sessionStorage.setItem("wordArray", words);
-                document.getElementById("wordPresentation").innerHTML = "Palabra introducida";
                 
             } else {
                 alert("Introduce una palabra");
